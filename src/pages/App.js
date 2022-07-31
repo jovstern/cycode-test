@@ -12,15 +12,20 @@ export default function App() {
   const [organization, setOrganizations] = useState(null);
 
   const submit = (organization, users) => {
-    setUsers(users);
-    setOrganizations(organization);
+    if (!organization || !users) {
+      setUsers(null);
+      setOrganizations(null);
+    }else{
+      setUsers(users);
+      setOrganizations(organization);
+    }
   };
-  console.log('users', users);
+  
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path={page1.route} element={<Page1 users={users} organization={organization}/>} />
+          <Route path={page1.route} element={<Page1 onSubmit={submit} users={users} organization={organization}/>} />
           <Route path={page2.route} element={<Page2 onSubmit={submit}/>} />
         </Routes>
       </BrowserRouter>

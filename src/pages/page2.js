@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {
   Container,
@@ -16,6 +16,10 @@ export default function Page2({onSubmit}) {
   const handleOpenModal = () => {
     setIsOpen(true);
   };
+
+  useEffect(() => {
+    onSubmit(null, null);
+  }, []);
 
   return (
     <Container mt={10}>

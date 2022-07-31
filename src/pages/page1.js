@@ -10,7 +10,11 @@ import {PAGES} from '../services/mock';
 export default function Page1({users, organization}) {
   const navigate = useNavigate();
   const {page2} = PAGES;
-  console.log(users);
+
+  const handleClick = () => {
+    navigate(page2.route);
+  };
+
   return (
     <Container mt={10}>
       <Header />
@@ -19,8 +23,8 @@ export default function Page1({users, organization}) {
         <Heading as='h2' size={users && organization ? 'md' : '3xl'} noOfLines={1} color='gray.500' >
           {users && organization ? `You have selected: ${organization.label} and ${users.map(user => user.label).join(', ')}` : 'Welcome to the app'}
         </Heading>
-        <Button mt={5} onClick={() => {navigate(page2.route);}} colorScheme='teal' variant='solid'>
-        Go to Page 2 →
+        <Button mt={5} onClick={handleClick} colorScheme='teal' variant='solid'>
+          Go to Page 2 →
         </Button>
       </Box>
     </Container>
@@ -34,5 +38,5 @@ Page1.defaultProps = {
 
 Page1.propTypes = {
   users: PropTypes.array,
-  organization: PropTypes.object
+  organization: PropTypes.object,
 };
